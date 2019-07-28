@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "579a2908c64533ac5b47";
+/******/ 	var hotCurrentHash = "1001c58a2fcdce3408bd";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -804,31 +804,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/index */ \"./src/index.ts\");\n\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: ['bar', 'baz']\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: {\r\n            bar: 'baz'\r\n        }\r\n    }\r\n});\r\nvar date = new Date();\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        date: date\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: '@:$, '\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: 'bar',\r\n        baz: null\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get#hash',\r\n    params: {\r\n        foo: 'bar'\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get?foo=bar',\r\n    params: {\r\n        bar: 'baz'\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/base/app.ts?");
-
-/***/ }),
-
-/***/ "./helpers/url.ts":
-/*!************************!*\
-  !*** ./helpers/url.ts ***!
-  \************************/
-/*! exports provided: buildURL */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"buildURL\", function() { return buildURL; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./helpers/util.ts\");\n\r\nfunction encode(val) {\r\n    return encodeURIComponent(val)\r\n        .replace(/%40/g, '@')\r\n        .replace(/%3A/gi, ':')\r\n        .replace(/%24/g, '$')\r\n        .replace(/%2C/gi, ',')\r\n        .replace(/%20/g, '+')\r\n        .replace(/%5B/gi, '[')\r\n        .replace(/%5D/gi, ']');\r\n}\r\nfunction buildURL(url, params) {\r\n    if (!params)\r\n        return url;\r\n    var parts = [];\r\n    Object.keys(params).forEach(function (key) {\r\n        var val = params[key];\r\n        if (val === null || typeof val === 'undefined')\r\n            return;\r\n        var values;\r\n        if (Array.isArray(val)) {\r\n            values = val;\r\n            key += '[]';\r\n        }\r\n        else {\r\n            values = [val];\r\n        }\r\n        values.forEach(function (val) {\r\n            if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isDate\"])(val)) {\r\n                val = val.toISOString();\r\n            }\r\n            else if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isObject\"])(val)) {\r\n                val = JSON.stringify(val);\r\n            }\r\n            parts.push(encode(key) + \"=\" + encode(val));\r\n        });\r\n    });\r\n    var serializedParams = parts.join('&');\r\n    if (serializedParams) {\r\n        var markIndex = url.indexOf('#');\r\n        if (markIndex !== -1) {\r\n            url = url.slice(0, markIndex);\r\n        }\r\n        url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;\r\n    }\r\n    return url;\r\n}\r\n\n\n//# sourceURL=webpack:///./helpers/url.ts?");
-
-/***/ }),
-
-/***/ "./helpers/util.ts":
-/*!*************************!*\
-  !*** ./helpers/util.ts ***!
-  \*************************/
-/*! exports provided: isDate, isObject */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isDate\", function() { return isDate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isObject\", function() { return isObject; });\nvar toString = Object.prototype.toString;\r\nfunction isDate(val) {\r\n    return toString.call(val) === '[object Date]';\r\n}\r\nfunction isObject(val) {\r\n    return val !== null && typeof val === 'object';\r\n}\r\n\n\n//# sourceURL=webpack:///./helpers/util.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/index */ \"./src/index.ts\");\n\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: ['bar', 'baz']\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: {\r\n            bar: 'baz'\r\n        }\r\n    }\r\n});\r\nvar date = new Date();\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        date: date\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: '@:$, '\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: 'bar',\r\n        baz: null\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get#hash',\r\n    params: {\r\n        foo: 'bar'\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get?foo=bar',\r\n    params: {\r\n        bar: 'baz'\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    data: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\nvar arr = new Int32Array([21, 31]);\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/buffer',\r\n    data: arr\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    data: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    headers: {\r\n        'content-type': 'application/json;'\r\n    },\r\n    data: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\nvar paramsString = 'q=URLUtils.searchParams&topic=api';\r\nvar searchParams = new URLSearchParams(paramsString);\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    data: searchParams\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/base/app.ts?");
 
 /***/ }),
 
@@ -945,6 +921,54 @@ eval("/**\n * Based heavily on https://github.com/webpack/webpack/blob/\n *  c0a
 
 /***/ }),
 
+/***/ "./src/helpers/data.ts":
+/*!*****************************!*\
+  !*** ./src/helpers/data.ts ***!
+  \*****************************/
+/*! exports provided: transformRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"transformRequest\", function() { return transformRequest; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction transformRequest(data) {\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data))\r\n        return JSON.stringify(data);\r\n    return data;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/data.ts?");
+
+/***/ }),
+
+/***/ "./src/helpers/header.ts":
+/*!*******************************!*\
+  !*** ./src/helpers/header.ts ***!
+  \*******************************/
+/*! exports provided: processHeaders */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"processHeaders\", function() { return processHeaders; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction normalizedHeaderName(headers, normalizedName) {\r\n    if (!headers)\r\n        return;\r\n    Object.keys(headers).forEach(function (name) {\r\n        if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {\r\n            headers[normalizedName] = headers[name];\r\n            delete headers[name];\r\n        }\r\n    });\r\n}\r\nfunction processHeaders(headers, data) {\r\n    normalizedHeaderName(headers, 'Content-Type');\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data)) {\r\n        debugger;\r\n        if (headers && !headers['Content-Type']) {\r\n            headers['Content-Type'] = 'application/json;charset=utf-8';\r\n        }\r\n    }\r\n    return headers;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/header.ts?");
+
+/***/ }),
+
+/***/ "./src/helpers/url.ts":
+/*!****************************!*\
+  !*** ./src/helpers/url.ts ***!
+  \****************************/
+/*! exports provided: buildURL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"buildURL\", function() { return buildURL; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction encode(val) {\r\n    return encodeURIComponent(val)\r\n        .replace(/%40/g, '@')\r\n        .replace(/%3A/gi, ':')\r\n        .replace(/%24/g, '$')\r\n        .replace(/%2C/gi, ',')\r\n        .replace(/%20/g, '+')\r\n        .replace(/%5B/gi, '[')\r\n        .replace(/%5D/gi, ']');\r\n}\r\nfunction buildURL(url, params) {\r\n    if (!params)\r\n        return url;\r\n    var parts = [];\r\n    Object.keys(params).forEach(function (key) {\r\n        var val = params[key];\r\n        if (val === null || typeof val === 'undefined')\r\n            return;\r\n        var values;\r\n        if (Array.isArray(val)) {\r\n            values = val;\r\n            key += '[]';\r\n        }\r\n        else {\r\n            values = [val];\r\n        }\r\n        values.forEach(function (val) {\r\n            if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isDate\"])(val)) {\r\n                val = val.toISOString();\r\n            }\r\n            else if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(val)) {\r\n                val = JSON.stringify(val);\r\n            }\r\n            parts.push(encode(key) + \"=\" + encode(val));\r\n        });\r\n    });\r\n    var serializedParams = parts.join('&');\r\n    if (serializedParams) {\r\n        var markIndex = url.indexOf('#');\r\n        if (markIndex !== -1) {\r\n            url = url.slice(0, markIndex);\r\n        }\r\n        url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;\r\n    }\r\n    return url;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/url.ts?");
+
+/***/ }),
+
+/***/ "./src/helpers/util.ts":
+/*!*****************************!*\
+  !*** ./src/helpers/util.ts ***!
+  \*****************************/
+/*! exports provided: isDate, isPlainObject */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isDate\", function() { return isDate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isPlainObject\", function() { return isPlainObject; });\nvar toString = Object.prototype.toString;\r\nfunction isDate(val) {\r\n    return toString.call(val) === '[object Date]';\r\n}\r\n// export function isObject (val: any): val is Object {\r\n//   return val !== null && typeof val === 'object'\r\n// }\r\n// 判断是否是JSON类型的对象\r\nfunction isPlainObject(val) {\r\n    return toString.call(val) === '[object Object]';\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/util.ts?");
+
+/***/ }),
+
 /***/ "./src/index.ts":
 /*!**********************!*\
   !*** ./src/index.ts ***!
@@ -953,7 +977,7 @@ eval("/**\n * Based heavily on https://github.com/webpack/webpack/blob/\n *  c0a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers/url */ \"./helpers/url.ts\");\n/* harmony import */ var _xhr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./xhr */ \"./src/xhr.ts\");\n\r\n\r\nfunction axios(config) {\r\n    processConfig(config);\r\n    Object(_xhr__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(config);\r\n}\r\nfunction processConfig(config) {\r\n    config.url = transformUrl(config);\r\n}\r\nfunction transformUrl(config) {\r\n    var url = config.url, params = config.params;\r\n    return Object(_helpers_url__WEBPACK_IMPORTED_MODULE_0__[\"buildURL\"])(url, params);\r\n}\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (axios);\r\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/url */ \"./src/helpers/url.ts\");\n/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/data */ \"./src/helpers/data.ts\");\n/* harmony import */ var _helpers_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/header */ \"./src/helpers/header.ts\");\n/* harmony import */ var _xhr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./xhr */ \"./src/xhr.ts\");\n\r\n\r\n\r\n\r\nfunction axios(config) {\r\n    processConfig(config);\r\n    Object(_xhr__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(config);\r\n}\r\nfunction processConfig(config) {\r\n    config.url = transformUrl(config);\r\n    config.data = transformRequestData(config);\r\n    config.headers = transformHeaders(config);\r\n}\r\nfunction transformUrl(config) {\r\n    var url = config.url, params = config.params;\r\n    return Object(_helpers_url__WEBPACK_IMPORTED_MODULE_0__[\"buildURL\"])(url, params);\r\n}\r\nfunction transformRequestData(config) {\r\n    var data = config.data;\r\n    return Object(_helpers_data__WEBPACK_IMPORTED_MODULE_1__[\"transformRequest\"])(data);\r\n}\r\nfunction transformHeaders(config) {\r\n    var _a = config.headers, headers = _a === void 0 ? {} : _a, data = config.data;\r\n    return Object(_helpers_header__WEBPACK_IMPORTED_MODULE_2__[\"processHeaders\"])(headers, data);\r\n}\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (axios);\r\n\n\n//# sourceURL=webpack:///./src/index.ts?");
 
 /***/ }),
 
@@ -965,7 +989,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return xhr; });\nfunction xhr(config) {\r\n    var _a = config.data, data = _a === void 0 ? null : _a, url = config.url, _b = config.method, method = _b === void 0 ? 'get' : _b;\r\n    var request = new XMLHttpRequest();\r\n    request.open(method.toLowerCase(), url, true);\r\n    request.send(data);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/xhr.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return xhr; });\nfunction xhr(config) {\r\n    var _a = config.data, data = _a === void 0 ? null : _a, url = config.url, _b = config.method, method = _b === void 0 ? 'get' : _b, headers = config.headers;\r\n    var request = new XMLHttpRequest();\r\n    request.open(method.toLowerCase(), url, true);\r\n    Object.keys(headers).forEach(function (name) {\r\n        if (data === null && name.toLowerCase() === 'content-type') {\r\n            delete headers[name];\r\n        }\r\n        else {\r\n            request.setRequestHeader(name, headers[name]);\r\n        }\r\n    });\r\n    request.send(data);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/xhr.ts?");
 
 /***/ }),
 

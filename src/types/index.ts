@@ -14,4 +14,5 @@ export interface AxiosRequestConfig {
   method?: Method, // http方法
   data?: any, // 请求数据
   params?: any // 请求url参数
+  headers?: any, // 请求header
 }

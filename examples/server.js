@@ -19,7 +19,23 @@ router.get('/base/get', function(req, res) {
   res.json(req.query)
 })
 
-app.use(router)
+router.post('/base/post', function(req, res) {
+  console.log(req.body)
+  res.json(req.body)
+})
+
+router.post('/base/buffer', function(req, res) {
+  let msg = []
+  req.on('data', (chunk) => {
+    if (chunk) {
+      msg.push(chunk)
+    }
+  })
+  req.on('end', () => {
+    let buf = Buffer.concat(msg)
+    res.json(buf.toJSON())
+  })
+})
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: '/__build__/',
@@ -35,6 +51,8 @@ app.use(express.static(__dirname))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(router)
 
 const port = process.env.PORT || 8090
 module.exports = app.listen(port, () => {
