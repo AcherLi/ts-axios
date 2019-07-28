@@ -258,7 +258,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "simple";
+/******/ 			var chunkId = "base";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -791,20 +791,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(1)(__webpack_require__.s = 1);
+/******/ 	return hotCreateRequire(0)(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./examples/simple/app.ts":
-/*!********************************!*\
-  !*** ./examples/simple/app.ts ***!
-  \********************************/
+/***/ "./examples/base/app.ts":
+/*!******************************!*\
+  !*** ./examples/base/app.ts ***!
+  \******************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/index */ \"./src/index.ts\");\n\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/simple/get',\r\n    params: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/simple/app.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/index */ \"./src/index.ts\");\n\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: ['bar', 'baz']\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: {\r\n            bar: 'baz'\r\n        }\r\n    }\r\n});\r\nvar date = new Date();\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        date: date\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: '@:$, '\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: 'bar',\r\n        baz: null\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get#hash',\r\n    params: {\r\n        foo: 'bar'\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get?foo=bar',\r\n    params: {\r\n        bar: 'baz'\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/base/app.ts?");
 
 /***/ }),
 
@@ -969,14 +969,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ 1:
-/*!********************************************************************!*\
-  !*** multi webpack-hot-middleware/client ./examples/simple/app.ts ***!
-  \********************************************************************/
+/***/ 0:
+/*!******************************************************************!*\
+  !*** multi webpack-hot-middleware/client ./examples/base/app.ts ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! webpack-hot-middleware/client */\"./node_modules/webpack-hot-middleware/client.js\");\nmodule.exports = __webpack_require__(/*! D:\\admin\\ts-axios-zhli\\examples\\simple\\app.ts */\"./examples/simple/app.ts\");\n\n\n//# sourceURL=webpack:///multi_webpack-hot-middleware/client_./examples/simple/app.ts?");
+eval("__webpack_require__(/*! webpack-hot-middleware/client */\"./node_modules/webpack-hot-middleware/client.js\");\nmodule.exports = __webpack_require__(/*! D:\\admin\\ts-axios-zhli\\examples\\base\\app.ts */\"./examples/base/app.ts\");\n\n\n//# sourceURL=webpack:///multi_webpack-hot-middleware/client_./examples/base/app.ts?");
 
 /***/ }),
 

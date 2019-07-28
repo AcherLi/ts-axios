@@ -32,7 +32,7 @@ export  function buildURL(url: string, params?: any) {
       } else if (isObject(val)) {
         val = JSON.stringify(val);
       }
-      parts.push(`${encode(key)}=${encode(val)}}`);
+      parts.push(`${encode(key)}=${encode(val)}`);
     })
   })
 
@@ -46,6 +46,5 @@ export  function buildURL(url: string, params?: any) {
 
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
   }
-
   return url;
 }

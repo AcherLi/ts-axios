@@ -17,6 +17,6 @@
     ]
   },
   "include": [
-    "src", "examples", "examples", "types"
+    "src", "examples", "examples", "src/types"
   ]
 }
