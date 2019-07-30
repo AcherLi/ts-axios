@@ -2,7 +2,7 @@ import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from './types';
 import { buildURL } from './helpers/url';
 import { transformRequest, transformResponse } from './helpers/data';
 import { processHeaders } from './helpers/header'
-import xhr from './xhr';
+import xhr from './core/xhr';
 
 function axios(config: AxiosRequestConfig): AxiosPromise {
   processConfig(config);

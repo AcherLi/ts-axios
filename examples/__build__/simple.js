@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "1001c58a2fcdce3408bd";
+/******/ 	var hotCurrentHash = "b6b1ae7be5276d3f20a8";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -791,7 +791,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(1)(__webpack_require__.s = 1);
+/******/ 	return hotCreateRequire(3)(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -925,11 +925,11 @@ eval("/**\n * Based heavily on https://github.com/webpack/webpack/blob/\n *  c0a
 /*!*****************************!*\
   !*** ./src/helpers/data.ts ***!
   \*****************************/
-/*! exports provided: transformRequest */
+/*! exports provided: transformRequest, transformResponse */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"transformRequest\", function() { return transformRequest; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction transformRequest(data) {\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data))\r\n        return JSON.stringify(data);\r\n    return data;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/data.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"transformRequest\", function() { return transformRequest; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"transformResponse\", function() { return transformResponse; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction transformRequest(data) {\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data))\r\n        return JSON.stringify(data);\r\n    return data;\r\n}\r\nfunction transformResponse(data) {\r\n    if (typeof data === 'string') {\r\n        try {\r\n            data = JSON.parse(data);\r\n        }\r\n        catch (e) {\r\n            // do nothing\r\n        }\r\n    }\r\n    return data;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/data.ts?");
 
 /***/ }),
 
@@ -937,11 +937,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*******************************!*\
   !*** ./src/helpers/header.ts ***!
   \*******************************/
-/*! exports provided: processHeaders */
+/*! exports provided: processHeaders, parseHeaders */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"processHeaders\", function() { return processHeaders; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction normalizedHeaderName(headers, normalizedName) {\r\n    if (!headers)\r\n        return;\r\n    Object.keys(headers).forEach(function (name) {\r\n        if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {\r\n            headers[normalizedName] = headers[name];\r\n            delete headers[name];\r\n        }\r\n    });\r\n}\r\nfunction processHeaders(headers, data) {\r\n    normalizedHeaderName(headers, 'Content-Type');\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data)) {\r\n        debugger;\r\n        if (headers && !headers['Content-Type']) {\r\n            headers['Content-Type'] = 'application/json;charset=utf-8';\r\n        }\r\n    }\r\n    return headers;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/header.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"processHeaders\", function() { return processHeaders; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseHeaders\", function() { return parseHeaders; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction normalizedHeaderName(headers, normalizedName) {\r\n    if (!headers)\r\n        return;\r\n    Object.keys(headers).forEach(function (name) {\r\n        if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {\r\n            headers[normalizedName] = headers[name];\r\n            delete headers[name];\r\n        }\r\n    });\r\n}\r\nfunction processHeaders(headers, data) {\r\n    normalizedHeaderName(headers, 'Content-Type');\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data)) {\r\n        if (headers && !headers['Content-Type']) {\r\n            headers['Content-Type'] = 'application/json;charset=utf-8';\r\n        }\r\n    }\r\n    return headers;\r\n}\r\n// 处理响应headers\r\nfunction parseHeaders(headers) {\r\n    var parsed = Object.create(null);\r\n    if (!headers) {\r\n        return parsed;\r\n    }\r\n    headers.split('\\r\\n').forEach(function (line) {\r\n        var _a = line.split(':'), key = _a[0], val = _a[1];\r\n        key = key.trim().toLowerCase();\r\n        if (!key)\r\n            return;\r\n        if (val)\r\n            val = val.trim();\r\n        parsed[key] = val;\r\n    });\r\n    return parsed;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/header.ts?");
 
 /***/ }),
 
@@ -961,11 +961,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*****************************!*\
   !*** ./src/helpers/util.ts ***!
   \*****************************/
-/*! exports provided: isDate, isPlainObject */
+/*! exports provided: isDate, isPlainObject, extend */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isDate\", function() { return isDate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isPlainObject\", function() { return isPlainObject; });\nvar toString = Object.prototype.toString;\r\nfunction isDate(val) {\r\n    return toString.call(val) === '[object Date]';\r\n}\r\n// export function isObject (val: any): val is Object {\r\n//   return val !== null && typeof val === 'object'\r\n// }\r\n// 判断是否是JSON类型的对象\r\nfunction isPlainObject(val) {\r\n    return toString.call(val) === '[object Object]';\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/util.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isDate\", function() { return isDate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isPlainObject\", function() { return isPlainObject; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"extend\", function() { return extend; });\nvar toString = Object.prototype.toString;\r\nfunction isDate(val) {\r\n    return toString.call(val) === '[object Date]';\r\n}\r\n// export function isObject (val: any): val is Object {\r\n//   return val !== null && typeof val === 'object'\r\n// }\r\n// 判断是否是JSON类型的对象\r\nfunction isPlainObject(val) {\r\n    return toString.call(val) === '[object Object]';\r\n}\r\nfunction extend(to, from) {\r\n    for (var key in from) {\r\n        to[key] = from[key];\r\n    }\r\n    return to;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/util.ts?");
 
 /***/ }),
 
@@ -977,7 +977,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/url */ \"./src/helpers/url.ts\");\n/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/data */ \"./src/helpers/data.ts\");\n/* harmony import */ var _helpers_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/header */ \"./src/helpers/header.ts\");\n/* harmony import */ var _xhr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./xhr */ \"./src/xhr.ts\");\n\r\n\r\n\r\n\r\nfunction axios(config) {\r\n    processConfig(config);\r\n    Object(_xhr__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(config);\r\n}\r\nfunction processConfig(config) {\r\n    config.url = transformUrl(config);\r\n    config.data = transformRequestData(config);\r\n    config.headers = transformHeaders(config);\r\n}\r\nfunction transformUrl(config) {\r\n    var url = config.url, params = config.params;\r\n    return Object(_helpers_url__WEBPACK_IMPORTED_MODULE_0__[\"buildURL\"])(url, params);\r\n}\r\nfunction transformRequestData(config) {\r\n    var data = config.data;\r\n    return Object(_helpers_data__WEBPACK_IMPORTED_MODULE_1__[\"transformRequest\"])(data);\r\n}\r\nfunction transformHeaders(config) {\r\n    var _a = config.headers, headers = _a === void 0 ? {} : _a, data = config.data;\r\n    return Object(_helpers_header__WEBPACK_IMPORTED_MODULE_2__[\"processHeaders\"])(headers, data);\r\n}\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (axios);\r\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/url */ \"./src/helpers/url.ts\");\n/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/data */ \"./src/helpers/data.ts\");\n/* harmony import */ var _helpers_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/header */ \"./src/helpers/header.ts\");\n/* harmony import */ var _xhr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./xhr */ \"./src/xhr.ts\");\n\r\n\r\n\r\n\r\nfunction axios(config) {\r\n    processConfig(config);\r\n    return Object(_xhr__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(config).then(function (res) {\r\n        return transformResponseData(res);\r\n    });\r\n}\r\nfunction processConfig(config) {\r\n    config.url = transformUrl(config);\r\n    config.headers = transformHeaders(config);\r\n    config.data = transformRequestData(config);\r\n}\r\nfunction transformUrl(config) {\r\n    var url = config.url, params = config.params;\r\n    return Object(_helpers_url__WEBPACK_IMPORTED_MODULE_0__[\"buildURL\"])(url, params);\r\n}\r\nfunction transformRequestData(config) {\r\n    var data = config.data;\r\n    return Object(_helpers_data__WEBPACK_IMPORTED_MODULE_1__[\"transformRequest\"])(data);\r\n}\r\nfunction transformHeaders(config) {\r\n    var _a = config.headers, headers = _a === void 0 ? {} : _a, data = config.data;\r\n    return Object(_helpers_header__WEBPACK_IMPORTED_MODULE_2__[\"processHeaders\"])(headers, data);\r\n}\r\nfunction transformResponseData(res) {\r\n    res.data = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_1__[\"transformResponse\"])(res.data);\r\n    return res;\r\n}\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (axios);\r\n\n\n//# sourceURL=webpack:///./src/index.ts?");
 
 /***/ }),
 
@@ -989,11 +989,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return xhr; });\nfunction xhr(config) {\r\n    var _a = config.data, data = _a === void 0 ? null : _a, url = config.url, _b = config.method, method = _b === void 0 ? 'get' : _b, headers = config.headers;\r\n    var request = new XMLHttpRequest();\r\n    request.open(method.toLowerCase(), url, true);\r\n    Object.keys(headers).forEach(function (name) {\r\n        if (data === null && name.toLowerCase() === 'content-type') {\r\n            delete headers[name];\r\n        }\r\n        else {\r\n            request.setRequestHeader(name, headers[name]);\r\n        }\r\n    });\r\n    request.send(data);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/xhr.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return xhr; });\n/* harmony import */ var _helpers_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/header */ \"./src/helpers/header.ts\");\n\r\nfunction xhr(config) {\r\n    return new Promise(function (resolve, reject) {\r\n        var _a = config.data, data = _a === void 0 ? null : _a, url = config.url, _b = config.method, method = _b === void 0 ? 'get' : _b, headers = config.headers, responseType = config.responseType, timeout = config.timeout;\r\n        var request = new XMLHttpRequest();\r\n        if (responseType) {\r\n            request.responseType = responseType;\r\n        }\r\n        if (timeout) {\r\n            request.timeout = timeout;\r\n        }\r\n        request.open(method.toLowerCase(), url, true);\r\n        request.onreadystatechange = function handleLoad() {\r\n            if (request.readyState !== 4) {\r\n                return;\r\n            }\r\n            if (request.status === 0) {\r\n                return;\r\n            }\r\n            var responseHeaders = Object(_helpers_header__WEBPACK_IMPORTED_MODULE_0__[\"parseHeaders\"])(request.getAllResponseHeaders());\r\n            var responseData = responseType && responseType !== 'text' ? request.response : request.responseText;\r\n            var response = {\r\n                data: responseData,\r\n                status: request.status,\r\n                statusText: request.statusText,\r\n                headers: responseHeaders,\r\n                config: config,\r\n                request: request\r\n            };\r\n            handleResponse(response);\r\n        };\r\n        // 处理response\r\n        function handleResponse(response) {\r\n            if (response.status >= 200 && response.status < 300) {\r\n                resolve(response);\r\n            }\r\n            else {\r\n                reject(new Error(\"Request failed with status code \" + response.status));\r\n            }\r\n        }\r\n        Object.keys(headers).forEach(function (name) {\r\n            if (data === null && name.toLowerCase() === 'content-type') {\r\n                delete headers[name];\r\n            }\r\n            else {\r\n                request.setRequestHeader(name, headers[name]);\r\n            }\r\n        });\r\n        // 错误回调\r\n        request.onerror = function handleError() {\r\n            reject(new Error('Network Error'));\r\n        };\r\n        // 超时回调\r\n        request.ontimeout = function handleTimeout() {\r\n            reject(new Error(\"Timeout of \" + timeout + \" ms exceeded\"));\r\n        };\r\n        request.send(data);\r\n    });\r\n}\r\n\n\n//# sourceURL=webpack:///./src/xhr.ts?");
 
 /***/ }),
 
-/***/ 1:
+/***/ 3:
 /*!********************************************************************!*\
   !*** multi webpack-hot-middleware/client ./examples/simple/app.ts ***!
   \********************************************************************/

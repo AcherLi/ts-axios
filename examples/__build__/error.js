@@ -258,7 +258,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "base";
+/******/ 			var chunkId = "error";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -791,20 +791,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(0)(__webpack_require__.s = 0);
+/******/ 	return hotCreateRequire(1)(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./examples/base/app.ts":
-/*!******************************!*\
-  !*** ./examples/base/app.ts ***!
-  \******************************/
+/***/ "./examples/error/app.ts":
+/*!*******************************!*\
+  !*** ./examples/error/app.ts ***!
+  \*******************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/index */ \"./src/index.ts\");\n\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: ['bar', 'baz']\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: {\r\n            bar: 'baz'\r\n        }\r\n    }\r\n});\r\nvar date = new Date();\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        date: date\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: '@:$, '\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get',\r\n    params: {\r\n        foo: 'bar',\r\n        baz: null\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get#hash',\r\n    params: {\r\n        foo: 'bar'\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/base/get?foo=bar',\r\n    params: {\r\n        bar: 'baz'\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    data: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\nvar arr = new Int32Array([21, 31]);\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/buffer',\r\n    data: arr\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    data: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    headers: {\r\n        'content-type': 'application/json;'\r\n    },\r\n    data: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\nvar paramsString = 'q=URLUtils.searchParams&topic=api';\r\nvar searchParams = new URLSearchParams(paramsString);\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    data: searchParams\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    data: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n}).then(function (res) {\r\n    console.log(res);\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'post',\r\n    url: '/base/post',\r\n    responseType: 'json',\r\n    data: {\r\n        a: 3,\r\n        b: 4\r\n    }\r\n}).then(function (res) {\r\n    console.log(res);\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/base/app.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/index */ \"./src/index.ts\");\n\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/error/get1'\r\n}).then(function (res) {\r\n    console.log(res);\r\n}).catch(function (e) {\r\n    console.log(e);\r\n});\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/error/get'\r\n}).then(function (res) {\r\n    console.log(res);\r\n}).catch(function (e) {\r\n    console.log(e);\r\n});\r\nsetTimeout(function () {\r\n    Object(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n        method: 'get',\r\n        url: '/error/get'\r\n    }).then(function (res) {\r\n        console.log(res);\r\n    }).catch(function (e) {\r\n        console.log(e);\r\n    });\r\n}, 5000);\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/error/timeout',\r\n    timeout: 2000\r\n}).then(function (res) {\r\n    console.log(res);\r\n}).catch(function (e) {\r\n    console.log(e.message);\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/error/app.ts?");
 
 /***/ }),
 
@@ -993,14 +993,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ 0:
-/*!******************************************************************!*\
-  !*** multi webpack-hot-middleware/client ./examples/base/app.ts ***!
-  \******************************************************************/
+/***/ 1:
+/*!*******************************************************************!*\
+  !*** multi webpack-hot-middleware/client ./examples/error/app.ts ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! webpack-hot-middleware/client */\"./node_modules/webpack-hot-middleware/client.js\");\nmodule.exports = __webpack_require__(/*! D:\\admin\\ts-axios-zhli\\examples\\base\\app.ts */\"./examples/base/app.ts\");\n\n\n//# sourceURL=webpack:///multi_webpack-hot-middleware/client_./examples/base/app.ts?");
+eval("__webpack_require__(/*! webpack-hot-middleware/client */\"./node_modules/webpack-hot-middleware/client.js\");\nmodule.exports = __webpack_require__(/*! D:\\admin\\ts-axios-zhli\\examples\\error\\app.ts */\"./examples/error/app.ts\");\n\n\n//# sourceURL=webpack:///multi_webpack-hot-middleware/client_./examples/error/app.ts?");
 
 /***/ }),
 
