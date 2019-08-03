@@ -1,4 +1,11 @@
 
+import InterceptorManager from '../core/InterceptorManager'
+
+interface Interceptors {
+  request: InterceptorManager<AxiosRequestConfig>
+  response: InterceptorManager<AxiosResponse>
+}
+
 // ts高级类型-字符串字面量类型定义请求method
 export type Method = 'get' | 'GET'
 | 'delete' | 'Delete'
@@ -34,6 +41,9 @@ export interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {
 }
 
 export interface Axios {
+
+  interceptors: Interceptors
+
   request<T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 
   head<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>

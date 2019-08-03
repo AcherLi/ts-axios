@@ -258,7 +258,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "simple";
+/******/ 			var chunkId = "interceptor";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -791,20 +791,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(4)(__webpack_require__.s = 4);
+/******/ 	return hotCreateRequire(3)(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./examples/simple/app.ts":
-/*!********************************!*\
-  !*** ./examples/simple/app.ts ***!
-  \********************************/
+/***/ "./examples/interceptor/app.ts":
+/*!*************************************!*\
+  !*** ./examples/interceptor/app.ts ***!
+  \*************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/index */ \"./src/index.ts\");\n\r\nObject(_src_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    method: 'get',\r\n    url: '/simple/get',\r\n    params: {\r\n        a: 1,\r\n        b: 2\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/simple/app.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../src/axios */ \"./src/axios.ts\");\n\r\n_src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].interceptors.request.use(function (config) {\r\n    config.headers.test += '1';\r\n    return config;\r\n});\r\n_src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].interceptors.request.use(function (config) {\r\n    config.headers.test += '2';\r\n    return config;\r\n});\r\n_src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].interceptors.request.use(function (config) {\r\n    config.headers.test += '3';\r\n    return config;\r\n});\r\n_src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].interceptors.response.use(function (res) {\r\n    res.data += '1';\r\n    return res;\r\n});\r\nvar interceptor = _src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].interceptors.response.use(function (res) {\r\n    res.data += '2';\r\n    return res;\r\n});\r\n_src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].interceptors.response.use(function (res) {\r\n    res.data += '3';\r\n    return res;\r\n});\r\n_src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].interceptors.response.eject(interceptor);\r\nObject(_src_axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({\r\n    url: '/interceptor/get',\r\n    method: 'get',\r\n    headers: {\r\n        test: ''\r\n    }\r\n}).then(function (res) {\r\n    console.log(res.data);\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/interceptor/app.ts?");
 
 /***/ }),
 
@@ -921,6 +921,54 @@ eval("/**\n * Based heavily on https://github.com/webpack/webpack/blob/\n *  c0a
 
 /***/ }),
 
+/***/ "./src/axios.ts":
+/*!**********************!*\
+  !*** ./src/axios.ts ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _core_Axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/Axios */ \"./src/core/Axios.ts\");\n/* harmony import */ var _helpers_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/util */ \"./src/helpers/util.ts\");\n\r\n\r\nfunction createInstance() {\r\n    var context = new _core_Axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\n    var instance = _core_Axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].prototype.request.bind(context);\r\n    Object(_helpers_util__WEBPACK_IMPORTED_MODULE_1__[\"extend\"])(instance, context);\r\n    return instance;\r\n}\r\nvar axios = createInstance();\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (axios);\r\n\n\n//# sourceURL=webpack:///./src/axios.ts?");
+
+/***/ }),
+
+/***/ "./src/core/Axios.ts":
+/*!***************************!*\
+  !*** ./src/core/Axios.ts ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dispatchRequest__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dispatchRequest */ \"./src/core/dispatchRequest.ts\");\n/* harmony import */ var _InterceptorManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InterceptorManager */ \"./src/core/InterceptorManager.ts\");\n\r\n\r\nvar Axios = /** @class */ (function () {\r\n    function Axios() {\r\n        this.interceptors = {\r\n            request: new _InterceptorManager__WEBPACK_IMPORTED_MODULE_1__[\"default\"](),\r\n            response: new _InterceptorManager__WEBPACK_IMPORTED_MODULE_1__[\"default\"]()\r\n        };\r\n    }\r\n    Axios.prototype.request = function (url, config) {\r\n        if (typeof url === 'string') {\r\n            if (!config) {\r\n                config = {};\r\n            }\r\n            config.url = url;\r\n        }\r\n        else {\r\n            config = url;\r\n        }\r\n        var chain = [{\r\n                resolved: _dispatchRequest__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\r\n                rejected: undefined\r\n            }];\r\n        this.interceptors.request.forEach(function (interceptor) {\r\n            chain.unshift(interceptor);\r\n        });\r\n        this.interceptors.response.forEach(function (interceptor) {\r\n            chain.push(interceptor);\r\n        });\r\n        var promise = Promise.resolve(config);\r\n        while (chain.length) {\r\n            var _a = chain.shift(), resolved = _a.resolved, rejected = _a.rejected;\r\n            promise = promise.then(resolved, rejected);\r\n        }\r\n        return promise;\r\n    };\r\n    Axios.prototype.head = function (url, config) {\r\n        return this._requestMethodWithoutData('head', url, config);\r\n    };\r\n    Axios.prototype.get = function (url, config) {\r\n        return this._requestMethodWithoutData('get', url, config);\r\n    };\r\n    Axios.prototype.delete = function (url, config) {\r\n        return this._requestMethodWithoutData('delete', url, config);\r\n    };\r\n    Axios.prototype.options = function (url, config) {\r\n        return this._requestMethodWithoutData('options', url, config);\r\n    };\r\n    Axios.prototype.post = function (url, data, config) {\r\n        return this._requestMethodWithData('post', url, data, config);\r\n    };\r\n    Axios.prototype.put = function (url, data, config) {\r\n        return this._requestMethodWithData('put', url, data, config);\r\n    };\r\n    Axios.prototype.patch = function (url, data, config) {\r\n        return this._requestMethodWithData('patch', url, data, config);\r\n    };\r\n    Axios.prototype._requestMethodWithoutData = function (method, url, config) {\r\n        return this.request(Object.assign(config || {}, {\r\n            method: method,\r\n            url: url\r\n        }));\r\n    };\r\n    Axios.prototype._requestMethodWithData = function (method, url, data, config) {\r\n        return this.request(Object.assign(config || {}, {\r\n            method: method,\r\n            url: url,\r\n            data: data\r\n        }));\r\n    };\r\n    return Axios;\r\n}());\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (Axios);\r\n\n\n//# sourceURL=webpack:///./src/core/Axios.ts?");
+
+/***/ }),
+
+/***/ "./src/core/InterceptorManager.ts":
+/*!****************************************!*\
+  !*** ./src/core/InterceptorManager.ts ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nvar InterceptorManager = /** @class */ (function () {\r\n    function InterceptorManager() {\r\n        this.interceptors = [];\r\n    }\r\n    InterceptorManager.prototype.use = function (resolved, rejected) {\r\n        this.interceptors.push({\r\n            resolved: resolved,\r\n            rejected: rejected\r\n        });\r\n        return this.interceptors.length - 1;\r\n    };\r\n    InterceptorManager.prototype.forEach = function (fn) {\r\n        this.interceptors.forEach(function (interceptor) {\r\n            if (interceptor !== null) {\r\n                fn(interceptor);\r\n            }\r\n        });\r\n    };\r\n    InterceptorManager.prototype.eject = function (id) {\r\n        if (this.interceptors[id]) {\r\n            this.interceptors[id] = null;\r\n        }\r\n    };\r\n    return InterceptorManager;\r\n}());\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (InterceptorManager);\r\n\n\n//# sourceURL=webpack:///./src/core/InterceptorManager.ts?");
+
+/***/ }),
+
+/***/ "./src/core/dispatchRequest.ts":
+/*!*************************************!*\
+  !*** ./src/core/dispatchRequest.ts ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return dispatchRequest; });\n/* harmony import */ var _xhr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./xhr */ \"./src/core/xhr.ts\");\n/* harmony import */ var _helpers_url__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/url */ \"./src/helpers/url.ts\");\n/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/data */ \"./src/helpers/data.ts\");\n/* harmony import */ var _helpers_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/header */ \"./src/helpers/header.ts\");\n\r\n\r\n\r\n\r\nfunction dispatchRequest(config) {\r\n    processConfig(config);\r\n    return Object(_xhr__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(config).then(function (res) {\r\n        return transformResponseData(res);\r\n    });\r\n}\r\nfunction processConfig(config) {\r\n    config.url = transformURL(config);\r\n    config.headers = transformHeaders(config);\r\n    config.data = transformRequestData(config);\r\n}\r\nfunction transformURL(config) {\r\n    var url = config.url, params = config.params;\r\n    return Object(_helpers_url__WEBPACK_IMPORTED_MODULE_1__[\"buildURL\"])(url, params);\r\n}\r\nfunction transformRequestData(config) {\r\n    return Object(_helpers_data__WEBPACK_IMPORTED_MODULE_2__[\"transformRequest\"])(config.data);\r\n}\r\nfunction transformHeaders(config) {\r\n    var _a = config.headers, headers = _a === void 0 ? {} : _a, data = config.data;\r\n    return Object(_helpers_header__WEBPACK_IMPORTED_MODULE_3__[\"processHeaders\"])(headers, data);\r\n}\r\nfunction transformResponseData(res) {\r\n    res.data = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_2__[\"transformResponse\"])(res.data);\r\n    return res;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/core/dispatchRequest.ts?");
+
+/***/ }),
+
 /***/ "./src/core/xhr.ts":
 /*!*************************!*\
   !*** ./src/core/xhr.ts ***!
@@ -981,26 +1029,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./src/index.ts":
-/*!**********************!*\
-  !*** ./src/index.ts ***!
-  \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/url */ \"./src/helpers/url.ts\");\n/* harmony import */ var _helpers_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/data */ \"./src/helpers/data.ts\");\n/* harmony import */ var _helpers_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/header */ \"./src/helpers/header.ts\");\n/* harmony import */ var _core_xhr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core/xhr */ \"./src/core/xhr.ts\");\n\r\n\r\n\r\n\r\nfunction axios(config) {\r\n    processConfig(config);\r\n    return Object(_core_xhr__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(config).then(function (res) {\r\n        return transformResponseData(res);\r\n    });\r\n}\r\nfunction processConfig(config) {\r\n    config.url = transformUrl(config);\r\n    config.headers = transformHeaders(config);\r\n    config.data = transformRequestData(config);\r\n}\r\nfunction transformUrl(config) {\r\n    var url = config.url, params = config.params;\r\n    return Object(_helpers_url__WEBPACK_IMPORTED_MODULE_0__[\"buildURL\"])(url, params);\r\n}\r\nfunction transformRequestData(config) {\r\n    var data = config.data;\r\n    return Object(_helpers_data__WEBPACK_IMPORTED_MODULE_1__[\"transformRequest\"])(data);\r\n}\r\nfunction transformHeaders(config) {\r\n    var _a = config.headers, headers = _a === void 0 ? {} : _a, data = config.data;\r\n    return Object(_helpers_header__WEBPACK_IMPORTED_MODULE_2__[\"processHeaders\"])(headers, data);\r\n}\r\nfunction transformResponseData(res) {\r\n    res.data = Object(_helpers_data__WEBPACK_IMPORTED_MODULE_1__[\"transformResponse\"])(res.data);\r\n    return res;\r\n}\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (axios);\r\n\n\n//# sourceURL=webpack:///./src/index.ts?");
-
-/***/ }),
-
-/***/ 4:
-/*!********************************************************************!*\
-  !*** multi webpack-hot-middleware/client ./examples/simple/app.ts ***!
-  \********************************************************************/
+/***/ 3:
+/*!*************************************************************************!*\
+  !*** multi webpack-hot-middleware/client ./examples/interceptor/app.ts ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! webpack-hot-middleware/client */\"./node_modules/webpack-hot-middleware/client.js\");\nmodule.exports = __webpack_require__(/*! D:\\admin\\ts-axios-zhli\\examples\\simple\\app.ts */\"./examples/simple/app.ts\");\n\n\n//# sourceURL=webpack:///multi_webpack-hot-middleware/client_./examples/simple/app.ts?");
+eval("__webpack_require__(/*! webpack-hot-middleware/client */\"./node_modules/webpack-hot-middleware/client.js\");\nmodule.exports = __webpack_require__(/*! D:\\admin\\ts-axios-zhli\\examples\\interceptor\\app.ts */\"./examples/interceptor/app.ts\");\n\n\n//# sourceURL=webpack:///multi_webpack-hot-middleware/client_./examples/interceptor/app.ts?");
 
 /***/ }),
 

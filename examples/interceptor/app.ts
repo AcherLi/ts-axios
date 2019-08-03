@@ -8,6 +8,7 @@ axios.interceptors.request.use(config => {
   config.headers.test += '2'
   return config
 })
+
 axios.interceptors.request.use(config => {
   config.headers.test += '3'
   return config
