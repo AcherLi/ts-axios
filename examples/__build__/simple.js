@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "8b025536b7a51d616ab6";
+/******/ 	var hotCurrentHash = "4960ee89d2aaed295041";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -791,7 +791,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(4)(__webpack_require__.s = 4);
+/******/ 	return hotCreateRequire(5)(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -949,11 +949,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*******************************!*\
   !*** ./src/helpers/header.ts ***!
   \*******************************/
-/*! exports provided: processHeaders, parseHeaders */
+/*! exports provided: processHeaders, parseHeaders, flattenHeaders */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"processHeaders\", function() { return processHeaders; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseHeaders\", function() { return parseHeaders; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\nfunction normalizedHeaderName(headers, normalizedName) {\r\n    if (!headers)\r\n        return;\r\n    Object.keys(headers).forEach(function (name) {\r\n        if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {\r\n            headers[normalizedName] = headers[name];\r\n            delete headers[name];\r\n        }\r\n    });\r\n}\r\nfunction processHeaders(headers, data) {\r\n    normalizedHeaderName(headers, 'Content-Type');\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data)) {\r\n        if (headers && !headers['Content-Type']) {\r\n            headers['Content-Type'] = 'application/json;charset=utf-8';\r\n        }\r\n    }\r\n    return headers;\r\n}\r\n// 处理响应headers\r\nfunction parseHeaders(headers) {\r\n    var parsed = Object.create(null);\r\n    if (!headers) {\r\n        return parsed;\r\n    }\r\n    headers.split('\\r\\n').forEach(function (line) {\r\n        var _a = line.split(':'), key = _a[0], val = _a[1];\r\n        key = key.trim().toLowerCase();\r\n        if (!key)\r\n            return;\r\n        if (val)\r\n            val = val.trim();\r\n        parsed[key] = val;\r\n    });\r\n    return parsed;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/header.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"processHeaders\", function() { return processHeaders; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"parseHeaders\", function() { return parseHeaders; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"flattenHeaders\", function() { return flattenHeaders; });\n/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ \"./src/helpers/util.ts\");\n\r\n\r\nfunction normalizedHeaderName(headers, normalizedName) {\r\n    if (!headers)\r\n        return;\r\n    Object.keys(headers).forEach(function (name) {\r\n        if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {\r\n            headers[normalizedName] = headers[name];\r\n            delete headers[name];\r\n        }\r\n    });\r\n}\r\nfunction processHeaders(headers, data) {\r\n    normalizedHeaderName(headers, 'Content-Type');\r\n    if (Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"isPlainObject\"])(data)) {\r\n        if (headers && !headers['Content-Type']) {\r\n            headers['Content-Type'] = 'application/json;charset=utf-8';\r\n        }\r\n    }\r\n    return headers;\r\n}\r\n// 处理响应headers\r\nfunction parseHeaders(headers) {\r\n    var parsed = Object.create(null);\r\n    if (!headers) {\r\n        return parsed;\r\n    }\r\n    headers.split('\\r\\n').forEach(function (line) {\r\n        var _a = line.split(':'), key = _a[0], val = _a[1];\r\n        key = key.trim().toLowerCase();\r\n        if (!key)\r\n            return;\r\n        if (val)\r\n            val = val.trim();\r\n        parsed[key] = val;\r\n    });\r\n    return parsed;\r\n}\r\nfunction flattenHeaders(headers, method) {\r\n    if (!headers) {\r\n        return headers;\r\n    }\r\n    headers = Object(_util__WEBPACK_IMPORTED_MODULE_0__[\"deepMerge\"])(headers.common || {}, headers[method] || {}, headers);\r\n    var methodsToDelete = ['delete', 'get', 'head', 'options', 'post', 'put', 'patch', 'common'];\r\n    methodsToDelete.forEach(function (method) {\r\n        delete headers[method];\r\n    });\r\n    return headers;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/header.ts?");
 
 /***/ }),
 
@@ -973,11 +973,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*****************************!*\
   !*** ./src/helpers/util.ts ***!
   \*****************************/
-/*! exports provided: isDate, isPlainObject, extend */
+/*! exports provided: isDate, isPlainObject, extend, deepMerge */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isDate\", function() { return isDate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isPlainObject\", function() { return isPlainObject; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"extend\", function() { return extend; });\nvar toString = Object.prototype.toString;\r\nfunction isDate(val) {\r\n    return toString.call(val) === '[object Date]';\r\n}\r\n// export function isObject (val: any): val is Object {\r\n//   return val !== null && typeof val === 'object'\r\n// }\r\n// 判断是否是JSON类型的对象\r\nfunction isPlainObject(val) {\r\n    return toString.call(val) === '[object Object]';\r\n}\r\nfunction extend(to, from) {\r\n    for (var key in from) {\r\n        to[key] = from[key];\r\n    }\r\n    return to;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/util.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isDate\", function() { return isDate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isPlainObject\", function() { return isPlainObject; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"extend\", function() { return extend; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deepMerge\", function() { return deepMerge; });\nvar toString = Object.prototype.toString;\r\nfunction isDate(val) {\r\n    return toString.call(val) === '[object Date]';\r\n}\r\n// export function isObject (val: any): val is Object {\r\n//   return val !== null && typeof val === 'object'\r\n// }\r\n// 判断是否是JSON类型的对象\r\nfunction isPlainObject(val) {\r\n    return toString.call(val) === '[object Object]';\r\n}\r\nfunction extend(to, from) {\r\n    for (var key in from) {\r\n        to[key] = from[key];\r\n    }\r\n    return to;\r\n}\r\n// 深拷贝\r\nfunction deepMerge() {\r\n    var objs = [];\r\n    for (var _i = 0; _i < arguments.length; _i++) {\r\n        objs[_i] = arguments[_i];\r\n    }\r\n    var result = Object.create(null);\r\n    objs.forEach(function (obj) {\r\n        if (obj) {\r\n            Object.keys(obj).forEach(function (key) {\r\n                var val = obj[key];\r\n                if (isPlainObject(val)) {\r\n                    if (isPlainObject(result[key])) {\r\n                        result[key] = deepMerge(result[key], val);\r\n                    }\r\n                    else {\r\n                        result[key] = deepMerge({}, val);\r\n                    }\r\n                }\r\n                else {\r\n                    result[key] = val;\r\n                }\r\n            });\r\n        }\r\n    });\r\n    return result;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/helpers/util.ts?");
 
 /***/ }),
 
@@ -993,7 +993,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!********************************************************************!*\
   !*** multi webpack-hot-middleware/client ./examples/simple/app.ts ***!
   \********************************************************************/

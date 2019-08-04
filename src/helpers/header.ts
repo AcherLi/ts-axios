@@ -1,5 +1,4 @@
-import { isPlainObject } from './util'
-import { deepMerge } from './util'
+import { isPlainObject ,deepMerge } from './util'
 
 function normalizedHeaderName(headers: any, normalizedName: string): void {
   if (!headers) return;
@@ -15,11 +14,11 @@ function normalizedHeaderName(headers: any, normalizedName: string): void {
 export function processHeaders(headers: any, data: any): any {
   normalizedHeaderName(headers, 'Content-Type');
 
-  if (isPlainObject(data)) {
-    if (headers && !headers['Content-Type']) {
-      headers['Content-Type'] = 'application/json;charset=utf-8';
-    }
-  }
+  // if (isPlainObject(data)) {
+  //   if (headers && !headers['Content-Type']) {
+  //     headers['Content-Type'] = 'application/json;charset=utf-8';
+  //   }
+  // }
 
   return headers;
 }
@@ -46,7 +45,8 @@ export function flattenHeaders(headers: any, method: Method): any {
   if (!headers) {
     return headers
   }
-  headers = deepMerge(headers.common || {}, headers[method] || {}, headers)
+
+  headers = deepMerge(headers.common, headers[method], headers)
 
   const methodsToDelete = ['delete', 'get', 'head', 'options', 'post', 'put', 'patch', 'common']
 
