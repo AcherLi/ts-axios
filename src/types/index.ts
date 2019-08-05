@@ -24,7 +24,13 @@ export interface AxiosRequestConfig {
   headers?: any // 请求header
   responseType?: XMLHttpRequestResponseType
   timeout?: number // 超时时间
-  [propName: string]: any // 字符串签名索引
+  [propName: string]: any // 字符串签名索引,
+  transformRequest?: AxiosTransformer | AxiosTransformer[]
+  transformResponse?: AxiosTransformer | AxiosTransformer[]
+}
+
+export interface AxiosTransformer {
+  (data: any, headers?: any): any
 }
 
 // 定义AxiosResponse接口类型
