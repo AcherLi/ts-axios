@@ -47,7 +47,13 @@ export interface AxiosPromise<T = any> extends Promise<AxiosResponse<T>> {
 
 }
 
+export interface AxiosStatic extends AxiosInstance{
+  create(config?: AxiosRequestConfig): AxiosInstance
+}
+
 export interface Axios {
+
+  defaults: AxiosRequestConfig
 
   interceptors: Interceptors
 
